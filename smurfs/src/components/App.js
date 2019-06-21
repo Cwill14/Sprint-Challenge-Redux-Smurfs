@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import SmurfList from './SmurfList';
+import SmurfForm from './SmurfForm';
 import { connect } from "react-redux";
 import { fetchData } from '../actions';
+
 
 /*
  to wire this component up you're going to need a few things.
@@ -17,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.fetching) {
+    if (this.props.fetching && this.props.addingSmurf) {
       return (
         <h2 className="App">loading...</h2>
       )
@@ -34,6 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <SmurfList smurfs={this.props.smurfs} />
+        <SmurfForm />
       </div>
     );
   }
@@ -42,6 +45,7 @@ class App extends Component {
 const mapStateToProps = state => ({
   smurfs: state.smurfs,
   fetching: state.fetchingSmurfs,
-  error: state.error 
+  error: state.error, 
+  addingSmurf: state.addingSmurf
 })
 export default connect(mapStateToProps,{ fetchData })(App);
