@@ -17,8 +17,20 @@ class App extends Component {
   }
 
   render() {
-    
-    
+    if (this.props.fetching) {
+      return (
+        <h2 className="App">loading...</h2>
+      )
+    }
+    if (this.props.error !== null) {
+      return (
+        <div className="App">
+          <h1>Uh Oh Spaghetti-O!!!</h1>
+          <h2>You have an error code!</h2>
+          <h3>{this.props.error}</h3>
+        </div>
+      )
+    }
     return (
       <div className="App">
         <SmurfList smurfs={this.props.smurfs} />

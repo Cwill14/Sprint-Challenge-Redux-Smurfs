@@ -11,10 +11,9 @@ export const fetchData = () => dispatch => {
   return axios
     .get('http://localhost:3333/smurfs')
     .then(res => {
-      console.log(res)
       dispatch({ type: FETCH_SUCCESS, payload: res.data })
     })
-    .catch(err => console.log(err))
+    .catch(err => dispatch({ type: FETCH_FAILURE, error: `${err}` }))
 }
 /*
   For this project you'll need at least 2 action creators for the main portion,
