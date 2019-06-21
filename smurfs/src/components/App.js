@@ -3,7 +3,7 @@ import './App.css';
 import SmurfList from './SmurfList';
 import SmurfForm from './SmurfForm';
 import { connect } from "react-redux";
-import { fetchData } from '../actions';
+import { fetchData, deleteSmurf } from '../actions';
 
 
 /*
@@ -18,6 +18,10 @@ class App extends Component {
     this.props.fetchData()
   }
 
+  deleteSmurf = id => {
+    this.props.deleteSmurf()
+  }
+  
   render() {
     if (this.props.fetching && this.props.addingSmurf) {
       return (
@@ -35,7 +39,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <SmurfList smurfs={this.props.smurfs} />
+        <SmurfList smurfs={this.props.smurfs} deleteSmurf={this.deleteSmurf} />
         <SmurfForm />
       </div>
     );
@@ -48,4 +52,4 @@ const mapStateToProps = state => ({
   error: state.error, 
   addingSmurf: state.addingSmurf
 })
-export default connect(mapStateToProps,{ fetchData })(App);
+export default connect(mapStateToProps,{ fetchData, deleteSmurf })(App);

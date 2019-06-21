@@ -1,7 +1,8 @@
 import React from 'react';
 import Smurf from './Smurf';
 
-const SmurfList = props => {
+const SmurfList = props => { 
+
     return (
         <div>
             <h1>Smurf List</h1>
@@ -13,6 +14,7 @@ const SmurfList = props => {
                         key={smurf.id}
                         age={smurf.age}
                         height={smurf.height}
+                        deleteSmurf={props.deleteSmurf}
                     />
                 )
             })}

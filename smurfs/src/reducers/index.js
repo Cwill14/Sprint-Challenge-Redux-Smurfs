@@ -7,7 +7,10 @@ import {
   FETCH_FAILURE,
   ADD_REQUEST,
   ADD_SUCCESS,
-  ADD_FAILURE 
+  ADD_FAILURE, 
+  DELETE_REQUEST,
+  DELETE_SUCCESS,
+  DELETE_FAILURE
 } from '../actions';
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -57,12 +60,30 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         addingSmurf: false,
-        smurf: [...state.smurfs, action.payload]
+        smurfs: [...state.smurfs, action.payload]
       }
     case ADD_FAILURE:
       return {
         ...state,
         addingSmurf: false,
+        error: action.error
+      }
+    case DELETE_REQUEST:
+      return {
+        ...state,
+        deletingSmurf: true,
+        error: null
+      }
+    case DELETE_SUCCESS:
+      return {
+        ...state,
+        deletingSmurf: false,
+        smurfs: action.payload
+      }
+    case DELETE_FAILURE:
+      return {
+        ...state,
+        deletingSmurf: false,
         error: action.error
       }
     default:
